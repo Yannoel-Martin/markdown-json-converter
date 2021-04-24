@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Convertisseur Markdown To Json</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<!-- a Propos -->
+    <div class="m-4 text-center">
+        <h1>Method to convert Markdown to Json</h1>
+        <p>Made by Yannoël MARTIN</p>
+    </div>
+    <div class="row mx-4 mb-2">
+        <div class="col-6">
+            <div class="encart-markdown mr-2">
+                <form>
+                    <div class="form-group">
+                        <label for="data_to_convert">Markdown to convert</label>
+                        <textarea class="form-control" id="data_to_convert" rows="23"></textarea>
+                    </div>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <span>Json conversion must be :</span>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="return_json" id="return_json_basic" value="basic" checked>
+                            <label class="form-check-label" for="return_json_basic">Basic</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="return_json" id="return_json_structure" value="structure">
+                            <label class="form-check-label" for="return_json_structure">Structured</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="encart-json ml-2">
+                <form>
+                    <div class="form-group">
+                        <label for="data_convert">Json after conversion</label>
+                        <textarea class="form-control" id="data_convert" rows="25" disabled></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <button onclick="importDefaultMarkdown();" class="btn btn-outline-primary">Import demo markdown</button>
+        <button onclick="convertToJson_Method();" class="btn btn-outline-primary">Launch convert</button>
+    </div>
+
+    <script src="js/convertisseur.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
