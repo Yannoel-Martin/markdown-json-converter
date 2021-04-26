@@ -4,45 +4,6 @@ const charactereEchappement = '\\';
 const retourLigne_html = charactereEchappement + "n";
 const textIndictator = '"';
 const tabulationJson = '  ';
-const listTagsMarkdown = {
-    "#": "h1",
-    "##": "h2",
-    "###": "h3",
-    "####": "h4",
-    "#####": "h5",
-    "######": "h6",
-    "```": "code",
-    "-": "ul",
-    "*": "ul",
-    "+": "ul",
-};
-
-function importDefaultMarkdown() {
-    let data_to_convert = document.getElementById("data_to_convert");
-    let markdownText = "";
-    markdownText += '# Titre du document' + retourLigne;
-    markdownText += retourLigne;
-    markdownText += 'Voici un paragraphe' + retourLigne;
-    markdownText += retourLigne;
-    markdownText += '## Titre de niveau 2' + retourLigne;
-    markdownText += retourLigne;
-    markdownText += 'Un nouveau paragraphe' + retourLigne;
-    markdownText += 'Toujours le même paragraphe' + retourLigne;
-    markdownText += retourLigne;
-    markdownText += 'Et un nouveau paragraphe !' + retourLigne;
-    markdownText += retourLigne;
-    markdownText += '```' + retourLigne;
-    markdownText += '# Un bloc de code en shell' + retourLigne;
-    markdownText += 'echo "coucou les lapinous"' + retourLigne;
-    markdownText += '```' + retourLigne;
-    markdownText += retourLigne;
-    markdownText += '### Un titre de niv 3' + retourLigne;
-    markdownText += retourLigne;
-    markdownText += '* une liste' + retourLigne;
-    markdownText += '* à' + retourLigne;
-    markdownText += '* puce' + retourLigne;
-    data_to_convert.value = markdownText;
-}
 
 function convertToJson_Method() {
     let data_to_convert = document.getElementById("data_to_convert");
