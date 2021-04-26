@@ -44,6 +44,12 @@ function importDefaultMarkdown(type_import) {
         case "list-ol-ul":
             markdownText += importListOlUl();
             break;
+        case "inner-content":
+            // *, **, ***, _, __, ___
+            break;
+        case "text-with-tab":
+            // >
+            break;
         default:
             markdownText += importTitleExampleFromWebsite();
             break;
