@@ -26,32 +26,27 @@ function importTitleExampleFromWebsite() {
 }
 function importTitleHierarchy() {
     let returnText = "";
+    returnText += '# Demo : Title hierarchy' + retourLigne;
     return returnText;
 }
-
-function importDefaultMarkdown() {
-    let data_to_convert = document.getElementById("data_to_convert");
+function importListOlUl() {
+    let returnText = "";
+    returnText += '# Demo : List ol / ul' + retourLigne;
+    return returnText;
+}
+function importDefaultMarkdown(type_import) {
     let markdownText = "";
-    markdownText += '# Titre du document' + retourLigne;
-    markdownText += retourLigne;
-    markdownText += 'Voici un paragraphe' + retourLigne;
-    markdownText += retourLigne;
-    markdownText += '## Titre de niveau 2' + retourLigne;
-    markdownText += retourLigne;
-    markdownText += 'Un nouveau paragraphe' + retourLigne;
-    markdownText += 'Toujours le même paragraphe' + retourLigne;
-    markdownText += retourLigne;
-    markdownText += 'Et un nouveau paragraphe !' + retourLigne;
-    markdownText += retourLigne;
-    markdownText += '```' + retourLigne;
-    markdownText += '# Un bloc de code en shell' + retourLigne;
-    markdownText += 'echo "coucou les lapinous"' + retourLigne;
-    markdownText += '```' + retourLigne;
-    markdownText += retourLigne;
-    markdownText += '### Un titre de niv 3' + retourLigne;
-    markdownText += retourLigne;
-    markdownText += '* une liste' + retourLigne;
-    markdownText += '* à' + retourLigne;
-    markdownText += '* puce' + retourLigne;
+    let data_to_convert = document.getElementById("data_to_convert");
+    switch (type_import) {
+        case "title-hierarchy":
+            markdownText += importTitleHierarchy();
+            break;
+        case "list-ol-ul":
+            markdownText += importListOlUl();
+            break;
+        default:
+            markdownText += importTitleExampleFromWebsite();
+            break;
+    }
     data_to_convert.value = markdownText;
 }
