@@ -1,4 +1,27 @@
 
+function importTitleHierarchy() {
+    let returnText = "";
+    returnText += '# Demo : Title hierarchy' + retourLigne;
+    returnText += retourLigne;
+    returnText += '## 1. My title' + retourLigne;
+    returnText += retourLigne;
+    returnText += '### 1.1. My first subtitle' + retourLigne;
+    returnText += retourLigne;
+    returnText += '#### So that\'s' + retourLigne;
+    returnText += retourLigne;
+    returnText += '##### all you' + retourLigne;
+    returnText += retourLigne;
+    returnText += '###### can do' + retourLigne;
+    returnText += retourLigne;
+    returnText += '### 1.2. My second subtitle' + retourLigne;
+    returnText += retourLigne;
+    returnText += '#### No ;)' + retourLigne;
+    returnText += retourLigne;
+    returnText += '### 1.3. My third subtitle' + retourLigne;
+    returnText += retourLigne;
+    returnText += '#### Good =)' + retourLigne;
+    return returnText;
+}
 function importTitleExampleFromWebsite() {
     let returnText = "";
     returnText += '# Titre du document' + retourLigne;
@@ -22,11 +45,6 @@ function importTitleExampleFromWebsite() {
     returnText += '* une liste' + retourLigne;
     returnText += '* à' + retourLigne;
     returnText += '* puce' + retourLigne;
-    return returnText;
-}
-function importTitleHierarchy() {
-    let returnText = "";
-    returnText += '# Demo : Title hierarchy' + retourLigne;
     return returnText;
 }
 function importListOlUl() {
