@@ -22,6 +22,23 @@ function importTitleHierarchy() {
     returnText += '#### Good =)' + retourLigne;
     return returnText;
 }
+function importUlList() {
+    let returnText = "";
+    returnText += '# Demo : Ul list' + retourLigne;
+    returnText += retourLigne;
+    returnText += '* first elem with *' + retourLigne;
+    returnText += '* second elem with *' + retourLigne;
+    returnText += '* third elem with *' + retourLigne;
+    returnText += retourLigne;
+    returnText += '* elem 4 with +' + retourLigne;
+    returnText += '* elem 5 with +' + retourLigne;
+    returnText += '* elem 6 with +' + retourLigne;
+    returnText += retourLigne;
+    returnText += '* the seven elem with -' + retourLigne;
+    returnText += '* the eight elem with -' + retourLigne;
+    returnText += '* the nine elem with -' + retourLigne;
+    return returnText;
+}
 function importTitleExampleFromWebsite() {
     let returnText = "";
     returnText += '# Titre du document' + retourLigne;
@@ -47,11 +64,6 @@ function importTitleExampleFromWebsite() {
     returnText += '* puce' + retourLigne;
     return returnText;
 }
-function importListOlUl() {
-    let returnText = "";
-    returnText += '# Demo : List ol / ul' + retourLigne;
-    return returnText;
-}
 function importDefaultMarkdown(type_import) {
     let markdownText = "";
     let data_to_convert = document.getElementById("data_to_convert");
@@ -59,14 +71,8 @@ function importDefaultMarkdown(type_import) {
         case "title-hierarchy":
             markdownText += importTitleHierarchy();
             break;
-        case "list-ol-ul":
-            markdownText += importListOlUl();
-            break;
-        case "inner-content":
-            // *, **, ***, _, __, ___
-            break;
-        case "text-with-tab":
-            // >
+        case "ul-list":
+            markdownText += importUlList();
             break;
         default:
             markdownText += importTitleExampleFromWebsite();
