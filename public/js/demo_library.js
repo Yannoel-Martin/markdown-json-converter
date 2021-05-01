@@ -22,9 +22,21 @@ function importTitleHierarchy() {
     returnText += '#### Good =)' + retourLigne;
     return returnText;
 }
-function importUlList() {
+function importListCheck() {
     let returnText = "";
-    returnText += '# Demo : Ul list' + retourLigne;
+    returnText += '# Demo : List Ol / Ul - Checklist' + retourLigne;
+    returnText += retourLigne;
+    returnText += '## Ol list :' + retourLigne;
+    returnText += retourLigne;
+    returnText += '1. I am' + retourLigne;
+    returnText += '2. a beautiful' + retourLigne;
+    returnText += '3. ol list' + retourLigne;
+    returnText += retourLigne;
+    returnText += '13. I am' + retourLigne;
+    returnText += '15. also an' + retourLigne;
+    returnText += '18. ol list' + retourLigne;
+    returnText += retourLigne;
+    returnText += '## Ul list :' + retourLigne;
     returnText += retourLigne;
     returnText += '* first elem with *' + retourLigne;
     returnText += '* second elem with *' + retourLigne;
@@ -37,6 +49,69 @@ function importUlList() {
     returnText += '* the seven elem with -' + retourLigne;
     returnText += '* the eight elem with -' + retourLigne;
     returnText += '* the nine elem with -' + retourLigne;
+    returnText += retourLigne;
+    returnText += '## Checklist :' + retourLigne;
+    returnText += retourLigne;
+    returnText += '[ ] I am not checked :(' + retourLigne;
+    returnText += '[X] I am checked :)' + retourLigne;
+    returnText += '[ ] I wait for my turn :|' + retourLigne;
+    return returnText;
+}
+function imporEncapsulation() {
+    let returnText = "";
+    returnText += '# Demo : Encapsulation content' + retourLigne;
+    returnText += retourLigne;
+    returnText += '## Italic :' + retourLigne;
+    returnText += retourLigne;
+    returnText += 'Who are you *stranger* ? I am an italic text from *' + retourLigne;
+    returnText += retourLigne;
+    returnText += 'I am the *future* of an other italic text, from _' + retourLigne;
+    returnText += retourLigne;
+    returnText += '## Bold :' + retourLigne;
+    returnText += retourLigne;
+    returnText += '**What the hell ?** The is no future except for bold text from **' + retourLigne;
+    returnText += retourLigne;
+    returnText += '**Stop yelling !** I know everybody prefer me, a bold text from __' + retourLigne;
+    returnText += retourLigne;
+    returnText += '## Bold and Italic :' + retourLigne;
+    returnText += retourLigne;
+    returnText += 'No, I am the original text, bold and italic text from ***' + retourLigne;
+    returnText += retourLigne;
+    returnText += 'Tssh, you\'re just the prototype of me, a text from ___' + retourLigne;
+    returnText += retourLigne;
+    returnText += '## Crossed out :' + retourLigne;
+    returnText += retourLigne;
+    returnText += 'I am a ~~censured~~ text, just close your eyes' + retourLigne;
+    returnText += retourLigne;
+    returnText += 'Shhhhhh, everthing will ~~end~~ be **fine** now' + retourLigne;
+    return returnText;
+}
+function importQuoteContent() {
+    let returnText = "";
+    returnText += '# Demo : Quotation' + retourLigne;
+    returnText += retourLigne;
+    returnText += '>Somebody say this.' + retourLigne;
+    returnText += '>but also this' + retourLigne;
+    returnText += retourLigne;
+    returnText += '>Somebody else told that.' + retourLigne;
+    returnText += 'and that of course without ">"' + retourLigne;
+    returnText += 'But hell no this sentence !' + retourLigne;
+    return returnText;
+}
+function importCodeContent() {
+    let returnText = "";
+    returnText += '# Demo : Code content' + retourLigne;
+    returnText += retourLigne;
+    returnText += 'I have some `code data` there.' + retourLigne;
+    returnText += retourLigne;
+    returnText += '``I am a code line of something bigger than me :)``' + retourLigne;
+    returnText += retourLigne;
+    returnText += '```' + retourLigne;
+    returnText += 'I am a code' + retourLigne;
+    returnText += 'with multiple lines' + retourLigne;
+    returnText += 'and all that you can do' + retourLigne;
+    returnText += 'is to copy me in your\'s' + retourLigne;
+    returnText += '```' + retourLigne;
     return returnText;
 }
 function importTitleExampleFromWebsite() {
@@ -71,8 +146,17 @@ function importDefaultMarkdown(type_import) {
         case "title-hierarchy":
             markdownText += importTitleHierarchy();
             break;
-        case "ul-list":
-            markdownText += importUlList();
+        case "list-check":
+            markdownText += importListCheck();
+            break;
+        case "encapsulation":
+            markdownText += imporEncapsulation();
+            break;
+        case "quotation":
+            markdownText += importQuoteContent();
+            break;
+        case "code-content":
+            markdownText += importCodeContent();
             break;
         default:
             markdownText += importTitleExampleFromWebsite();
