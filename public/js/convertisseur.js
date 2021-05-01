@@ -12,21 +12,15 @@ function convertToJson_Method() {
     let jsonArray = getJsonArray(listLigneMarkdown);
     data_convert.innerHTML = displayReturnJson(jsonArray);
 }
+
+/* Functions for the Json Array */
 function getJsonArray(listLigneMarkdown) {
     let arrayReturn = [];
     let text_ligne = "";
     let mode_markdown = getMarkdownDefault();
-    let ligneArray = [];
     listLigneMarkdown.forEach(ligneMarkdown => {
         if (ligneMarkdown !== "") {
-            ligneArray = ligneMarkdown.split(" ");
-            if (listTagsMarkdown[ligneArray[0]] && mode_markdown !== "code") {
-                mode_markdown = listTagsMarkdown[ligneArray[0]];
-            }
-            if (text_ligne !== "") {
-                text_ligne += retourLigne_html;
-            }
-            text_ligne = traitmentNewContentForJsonArray(mode_markdown, text_ligne, ligneArray, ligneMarkdown);
+            text_ligne = traitmentNewContentForJsonArray(ligneMarkdown, mode_markdown, text_ligne);
         } else {
             text_ligne = traitmentBeforePushIntoJsonArray(mode_markdown, text_ligne);
             arrayReturn.push({"tagJsonLine": mode_markdown, "contentJsonLine": text_ligne});
@@ -36,9 +30,16 @@ function getJsonArray(listLigneMarkdown) {
     });
     return arrayReturn;
 }
-function traitmentNewContentForJsonArray(mode_markdown, text_ligne, ligneArray, ligneMarkdown) {
-    let text_ligne_boucle = "";
+function traitmentNewContentForJsonArray(ligneMarkdown, mode_markdown, text_ligne) {
+    let ligneArray = ligneMarkdown.split(" ");
+    if (listTagsMarkdown[ligneArray[0]] && mode_markdown !== "code") {
+        mode_markdown = listTagsMarkdown[ligneArray[0]];
+    }
+    if (text_ligne !== "") {
+        text_ligne += retourLigne_html;
+    }
     if (mode_markdown !== "code") {
+        let text_ligne_boucle = "";
         ligneArray.forEach(elem_ligne => {
             if (text_ligne_boucle !== "") {
                 text_ligne_boucle += " ";
@@ -81,6 +82,7 @@ function traitmentBeforePushIntoJsonArray(mode_markdown, text_ligne) {
             });
             text_ligne = '"' + text_ligne + '"';
             break;
+        case "ol":
         case "ul":
             text_ligne_temp = text_ligne.split(retourLigne_html);
             text_ligne = '';
@@ -98,6 +100,8 @@ function traitmentBeforePushIntoJsonArray(mode_markdown, text_ligne) {
     }
     return text_ligne;
 }
+
+/* Function for Json Return */
 function displayReturnJson(jsonArray) {
     let textReturn = "";
     let radioButtonOptionBasic = document.getElementById("return_json_basic");

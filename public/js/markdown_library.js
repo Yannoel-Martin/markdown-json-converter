@@ -6,16 +6,18 @@ const listTagsMarkdown = {
     "####": "h4",
     "#####": "h5",
     "######": "h6",
-};
-const listLisMarkdown = {
+    "```": "code",
     "-": "ul",
     "*": "ul",
     "+": "ul",
     "number.": "ol",
     "[ ]": "checklist",
     "[X]": "checklist",
-}
-const listStyleMarkdown = {
+    ">": "quote",
+};
+const listInnerContentMarkdown = {
+    "`": "part-code",
+    "``": "part-code",
     "*": "i",
     "_": "i",
     "**": "b",
@@ -23,11 +25,6 @@ const listStyleMarkdown = {
     "***": "ib",
     "___": "ib",
     "~~": "-",
-}
-const listCodeMarkdown = {
-    "`": "world-code",
-    "``": "line-code",
-    "```": "all-code",
 }
 
 function getMarkdownDefault() {
