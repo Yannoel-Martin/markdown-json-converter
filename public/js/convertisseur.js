@@ -20,9 +20,11 @@ function getJsonArray(listLigneMarkdown) {
     let mode_markdown = getMarkdownDefault();
     listLigneMarkdown.forEach(ligneMarkdown => {
         if (ligneMarkdown !== "") {
-            text_ligne = traitmentNewContentForJsonArray(ligneMarkdown, mode_markdown, text_ligne);
+            let ligneArray = ligneMarkdown.split(" ");
+            mode_markdown = chechNewModeMarkdown(ligneArray, mode_markdown);
+            text_ligne = traitmentNewContentForTextLine(ligneArray, ligneMarkdown, mode_markdown, text_ligne);
         } else {
-            text_ligne = traitmentBeforePushIntoJsonArray(mode_markdown, text_ligne);
+            text_ligne = traitmentTextLineBeforePush(mode_markdown, text_ligne);
             arrayReturn.push({"tagJsonLine": mode_markdown, "contentJsonLine": text_ligne});
             text_ligne = "";
             mode_markdown = getMarkdownDefault();
@@ -30,11 +32,13 @@ function getJsonArray(listLigneMarkdown) {
     });
     return arrayReturn;
 }
-function traitmentNewContentForJsonArray(ligneMarkdown, mode_markdown, text_ligne) {
-    let ligneArray = ligneMarkdown.split(" ");
+function chechNewModeMarkdown(ligneArray, mode_markdown) {
     if (listTagsMarkdown[ligneArray[0]] && mode_markdown !== "code") {
         mode_markdown = listTagsMarkdown[ligneArray[0]];
     }
+    return mode_markdown;
+}
+function traitmentNewContentForTextLine(ligneArray, ligneMarkdown, mode_markdown, text_ligne) {
     if (text_ligne !== "") {
         text_ligne += retourLigne_html;
     }
@@ -54,7 +58,7 @@ function traitmentNewContentForJsonArray(ligneMarkdown, mode_markdown, text_lign
     }
     return text_ligne;
 }
-function traitmentBeforePushIntoJsonArray(mode_markdown, text_ligne) {
+function traitmentTextLineBeforePush(mode_markdown, text_ligne) {
     let text_ligne_temp = "";
     switch (mode_markdown) {
         case "code":
