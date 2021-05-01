@@ -49,13 +49,15 @@ function traitmentNewContentForTextLine(ligneArray, ligneMarkdown, mode_markdown
     }
     if (mode_markdown !== "code") {
         let text_ligne_boucle = "";
+        let text_ligne_ctr = 0;
         ligneArray.forEach(elem_ligne => {
             if (text_ligne_boucle !== "") {
                 text_ligne_boucle += " ";
             }
-            if (elem_ligne !== ligneArray[0]) {
+            if (elem_ligne !== ligneArray[0] || text_ligne_ctr !== 0) {
                 text_ligne_boucle += elem_ligne;
             }
+            text_ligne_ctr++;
         })
         text_ligne += text_ligne_boucle;
     } else {
