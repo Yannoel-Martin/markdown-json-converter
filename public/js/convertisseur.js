@@ -110,7 +110,7 @@ function traitmentTextLineBeforePush(mode_markdown, text_ligne) {
     return text_ligne;
 }
 
-/* Function for Json Return */
+/* Functions for Json Return */
 function displayReturnJson(jsonArray) {
     let textReturn = "";
     let radioButtonOptionBasic = document.getElementById("return_json_basic");
@@ -125,14 +125,13 @@ function displayReturnJson(jsonArray) {
     return textReturn;
 }
 function constructBasicJsonText(jsonArray) {
-    textReturn = "";
+    let textReturn = "";
     jsonArray.forEach(elemJson => {
         textReturn += getTabulation() + textIndictator + elemJson.tagJsonLine + textIndictator + ': ' + elemJson.contentJsonLine + retourLigne;
     });
     return textReturn;
 }
 function constructStructuredJsonText(jsonArray) {
-    console.log(jsonArray);
     let textReturn = "";
     let nivTabulation = 1;
     jsonArray.forEach(elemJson => {
@@ -231,7 +230,7 @@ function convertStringToArray(string) {
     return arrayReturn;
 }
 function closeAccoladeLevel(nivTabulation, lvlLimite = 1, isVirgule = false) {
-    textReturn = "";
+    let textReturn = "";
     for (let i = nivTabulation; i > lvlLimite; i--) {
         nivTabulation--;
         textReturn += getTabulation(nivTabulation) + '}'
