@@ -15,7 +15,7 @@ function convertToJson_Method() {
 function getJsonArray(listLigneMarkdown) {
     let arrayReturn = [];
     let text_ligne = "";
-    let mode_markdown = "p";
+    let mode_markdown = getMarkdownDefault();
     let ligneArray = [];
     listLigneMarkdown.forEach(ligneMarkdown => {
         if (ligneMarkdown !== "") {
@@ -31,7 +31,7 @@ function getJsonArray(listLigneMarkdown) {
             text_ligne = traitmentBeforePushIntoJsonArray(mode_markdown, text_ligne);
             arrayReturn.push({"tagJsonLine": mode_markdown, "contentJsonLine": text_ligne});
             text_ligne = "";
-            mode_markdown = "p";
+            mode_markdown = getMarkdownDefault();
         }
     });
     return arrayReturn;
