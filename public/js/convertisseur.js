@@ -35,6 +35,11 @@ function getJsonArray(listLigneMarkdown) {
 function chechNewModeMarkdown(ligneArray, mode_markdown) {
     if (listTagsMarkdown[ligneArray[0]] && mode_markdown !== "code") {
         mode_markdown = listTagsMarkdown[ligneArray[0]];
+    } else {
+        let numberOl = parseInt(ligneArray[0].split('.')[0]);
+        if (!isNaN(numberOl)) {
+            mode_markdown = "ol";
+        }
     }
     return mode_markdown;
 }
@@ -174,12 +179,13 @@ function constructStructuredJsonText(jsonArray) {
                 textReturn += getTabulation(12) + textIndictator + "content" + textIndictator + ': {' + retourLigne;
                 nivTabulation = 13;
                 break;
+            case "ol":
             case "ul":
-                let elemJsonUlArray = convertStringToArray(elemJson.contentJsonLine);
+                let elemJsonOlUlArray = convertStringToArray(elemJson.contentJsonLine);
                 textReturn += getTabulation(nivTabulation) + textIndictator + elemJson.tagJsonLine + textIndictator + ': [' + retourLigne;
                 nivTabulation++;
-                elemJsonUlArray.forEach(elemJsonUl => {
-                    textReturn += getTabulation(nivTabulation) + textIndictator + '{ p' + textIndictator + ': ' + textIndictator + elemJsonUl + textIndictator + ' },' + retourLigne;
+                elemJsonOlUlArray.forEach(elemJsonUl => {
+                    textReturn += getTabulation(nivTabulation) + '{ ' + textIndictator + 'p' + textIndictator + ': ' + textIndictator + elemJsonUl + textIndictator + ' },' + retourLigne;
                 })
                 nivTabulation--;
                 textReturn += getTabulation(nivTabulation) + ']' + retourLigne;
