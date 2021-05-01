@@ -104,7 +104,9 @@ function importCodeContent() {
     returnText += retourLigne;
     returnText += 'I have some `code data` there.' + retourLigne;
     returnText += retourLigne;
-    returnText += '``I am a code line of something bigger than me :)``' + retourLigne;
+    returnText += 'I am a simple text line' + retourLigne;
+    returnText += '``I am a code line``' + retourLigne;
+    returnText += 'I am another simple text line' + retourLigne;
     returnText += retourLigne;
     returnText += '```' + retourLigne;
     returnText += 'I am a code' + retourLigne;
