@@ -202,6 +202,27 @@ function constructStructuredJsonText(jsonArray) {
     }
     return textReturn;
 }
+function displayEndElemArray(position, array) {
+    if (position !== array.length) {
+        return "," + retourLigne;
+    }
+    return retourLigne;
+}
+function displayEndElemContentArray(position, array) {
+    if (position !== array.length) {
+        let nextTag = array[position].tagJsonLine;
+        let nextTagTitle = false;
+        arrayContentTags.forEach(contentTag => {
+            if (contentTag === nextTag) {
+                nextTagTitle = true;
+            }
+        });
+        if (!nextTagTitle) {
+            return "," + retourLigne;
+        }
+    }
+    return retourLigne;
+}
 function getTabulation(nbTabulation = 1) {
     let textReturn = "";
     for (let i = 0; i < nbTabulation; i++) {
