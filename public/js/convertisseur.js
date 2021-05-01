@@ -105,6 +105,21 @@ function traitmentTextLineBeforePush(mode_markdown, text_ligne) {
             });
             text_ligne = '[' + text_ligne + ']';
             break;
+        case "checklist":
+            text_ligne_temp = text_ligne.split(retourLigne_html);
+            text_ligne = '';
+            text_ligne_temp.forEach(ligne_temp => {
+                if (text_ligne !== "") {
+                    text_ligne += ',' + retourLigne;
+                }
+                if (ligne_temp.substr(0, 2) !== "] ") {
+                    text_ligne += '{ "isCheked": true, "p": "' + ligne_temp + '" }';
+                } else {
+                    text_ligne += '{ "isCheked": false, "p": "' + ligne_temp.substr(3, (ligne_temp.length - 2)) + '" }';
+                }
+            });
+            text_ligne = '[' + retourLigne + text_ligne + retourLigne + ']';
+            break;
         default:
             text_ligne = '"' + text_ligne + '"';
             break;
@@ -128,13 +143,37 @@ function displayReturnJson(jsonArray) {
 }
 function constructBasicJsonText(jsonArray) {
     let textReturn = "";
+    let ctrJsonArray = 1;
     jsonArray.forEach(elemJson => {
-        textReturn += getTabulation() + textIndictator + elemJson.tagJsonLine + textIndictator + ': ' + elemJson.contentJsonLine + retourLigne;
+        if (elemJson.tagJsonLine === "checklist") {
+            let contentJsonLineArray = elemJson.contentJsonLine.split(retourLigne);
+            let ctrJsonLineArray = contentJsonLineArray.length;
+            textReturn += getTabulation() + textIndictator + elemJson.tagJsonLine + textIndictator + ': ';
+            contentJsonLineArray.forEach(jsonTextLine => {
+                if (ctrJsonLineArray !== 1 && ctrJsonLineArray !== contentJsonLineArray.length) {
+                    textReturn += getTabulation();
+                }
+                if (ctrJsonLineArray !== contentJsonLineArray.length) {
+                    textReturn += getTabulation();
+                }
+                textReturn += jsonTextLine;
+                if (ctrJsonLineArray === 1) {
+                    textReturn += displayEndElemArray(ctrJsonArray, jsonArray);
+                } else {
+                    textReturn += retourLigne;
+                }
+                ctrJsonLineArray--;
+            });
+        } else {
+            textReturn += getTabulation() + textIndictator + elemJson.tagJsonLine + textIndictator + ': ' + elemJson.contentJsonLine + displayEndElemArray(ctrJsonArray, jsonArray);
+        }
+        ctrJsonArray++;
     });
     return textReturn;
 }
 function constructStructuredJsonText(jsonArray) {
     let textReturn = "";
+    let ctrJsonArray = 1;
     let nivTabulation = 1;
     jsonArray.forEach(elemJson => {
         switch (elemJson.tagJsonLine) {
@@ -189,12 +228,34 @@ function constructStructuredJsonText(jsonArray) {
                     textReturn += getTabulation(nivTabulation) + '{ ' + textIndictator + 'p' + textIndictator + ': ' + textIndictator + elemJsonUl + textIndictator + ' },' + retourLigne;
                 })
                 nivTabulation--;
-                textReturn += getTabulation(nivTabulation) + ']' + retourLigne;
+                textReturn += getTabulation(nivTabulation) + ']' + displayEndElemContentArray(ctrJsonArray, jsonArray);
+                break;
+            case "checklist":
+                let elemJsonChecklistArray = elemJson.contentJsonLine.split(retourLigne);
+                let elemChecklistArray = [];
+                let ctrChecklistArray = 1;
+                textReturn += getTabulation(nivTabulation) + textIndictator + elemJson.tagJsonLine + textIndictator + ': [' + retourLigne;
+                nivTabulation++;
+                elemJsonChecklistArray.forEach(elemJsonCheklist => {
+                    if (elemJsonCheklist !== "[" && elemJsonCheklist !== "]") {
+                        textReturn += getTabulation(nivTabulation) + '{' + retourLigne;
+                        nivTabulation++;
+                        elemChecklistArray = elemJsonCheklist.split(", \"p\"");
+                        textReturn += getTabulation(nivTabulation) + elemChecklistArray[0].substr(2, (elemChecklistArray[0].length - 2)) + ',' + retourLigne;
+                        textReturn += getTabulation(nivTabulation) + '"p"' + elemChecklistArray[1].substr(0, (elemChecklistArray[1].length - 2)) + retourLigne;
+                        nivTabulation--;
+                        textReturn += getTabulation(nivTabulation) + '}' + displayEndElemArray(ctrChecklistArray, elemChecklistArray);
+                        ctrChecklistArray++;
+                    }
+                })
+                nivTabulation--;
+                textReturn += getTabulation(nivTabulation) + ']' + displayEndElemContentArray(ctrJsonArray, jsonArray);
                 break;
             default:
-                textReturn += getTabulation(nivTabulation) + textIndictator + elemJson.tagJsonLine + textIndictator + ': ' + elemJson.contentJsonLine + retourLigne;
+                textReturn += getTabulation(nivTabulation) + textIndictator + elemJson.tagJsonLine + textIndictator + ': ' + elemJson.contentJsonLine + displayEndElemContentArray(ctrJsonArray, jsonArray);
                 break;
         }
+        ctrJsonArray++;
     });
     /* ferme les accolades non fermées */
     if (nivTabulation > 1) {
