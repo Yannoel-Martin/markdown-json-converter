@@ -127,10 +127,15 @@ function traitmentTextLineBeforePush(mode_markdown, text_ligne) {
                 if (text_ligne !== "") {
                     text_ligne += ',' + retourLigne;
                 }
-                if (ligne_temp.substr(0, 2) !== "] ") {
+                if (ligne_temp.substr(0, 2) !== "] " && ligne_temp.substr(0, 4) !== "[ ] ") {
                     text_ligne += '{ "isCheked": true, "p": "' + ligne_temp + '" }';
                 } else {
-                    text_ligne += '{ "isCheked": false, "p": "' + ligne_temp.substr(3, (ligne_temp.length - 2)) + '" }';
+                    if (ligne_temp.substr(0, 2) === "] ") {
+                        text_ligne += '{ "isCheked": false, "p": "' + ligne_temp.substr(2, (ligne_temp.length - 2)) + '" }';
+                    }
+                    if (ligne_temp.substr(0, 4) === "[ ] ") {
+                        text_ligne += '{ "isCheked": false, "p": "' + ligne_temp.substr(4, (ligne_temp.length - 4)) + '" }';
+                    }
                 }
             });
             text_ligne = '[' + retourLigne + text_ligne + retourLigne + ']';
