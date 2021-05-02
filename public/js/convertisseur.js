@@ -61,7 +61,7 @@ function traitmentNewContentForTextLine(ligneArray, ligneMarkdown, mode_markdown
             if (ligneMarkdown.substr(0, 1) !== ">") {
                 text_ligne += ligneMarkdown;
             } else {
-                text_ligne += "  " + ligneMarkdown.substr(1, (ligneMarkdown.length - 1));
+                text_ligne += getTabulation() + ligneMarkdown.substr(1, (ligneMarkdown.length - 1));
             }
             break;
         default:
@@ -144,13 +144,14 @@ function traitmentTextLineBeforePush(mode_markdown, text_ligne) {
                     text_ligne += retourLigne_html;
                 }
                 if (text_ligne_ctr !== text_ligne_temp.length) {
-                    if (ligne_temp.substr(0, 2) !== "  ") {
-                        text_ligne += "  ";
+                    if (ligne_temp.substr(0, 2) !== getTabulation()) {
+                        text_ligne += getTabulation();
                     }
                 }
                 text_ligne += ligne_temp;
                 text_ligne_ctr++;
             });
+            text_ligne = '"' + text_ligne + '"';
             break;
         default:
             text_ligne = '"' + text_ligne + '"';
