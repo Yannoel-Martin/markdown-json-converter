@@ -87,15 +87,15 @@ function imporEncapsulation() {
     returnText += retourLigne;
     returnText += '## Bold and Italic :' + retourLigne;
     returnText += retourLigne;
-    returnText += 'No, I am the original text, bold and italic text from ***' + retourLigne;
+    returnText += 'No, I am the ***original*** text, bold and italic text from ***' + retourLigne;
     returnText += retourLigne;
-    returnText += 'Tssh, you\'re just the prototype of me, a text from ___' + retourLigne;
+    returnText += 'You\'re just a ___fake___ text, a bold and italic text from ___' + retourLigne;
     returnText += retourLigne;
     returnText += '## Crossed out :' + retourLigne;
     returnText += retourLigne;
     returnText += 'I am a ~~censured~~ text, just close your eyes' + retourLigne;
     returnText += retourLigne;
-    returnText += 'Shhhhhh, everthing will ~~end~~ be **fine** now' + retourLigne;
+    returnText += 'Shhhhhh, everthing will ~~end~~ be *fine* now' + retourLigne;
     return returnText;
 }
 function importCodeContent() {
