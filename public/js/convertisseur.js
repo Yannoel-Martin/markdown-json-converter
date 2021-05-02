@@ -164,6 +164,17 @@ function traitmentTextLineBeforePush(mode_markdown, text_ligne) {
     }
     return text_ligne;
 }
+function foundLastSymbolPresent(styleBySymbolArray, text_ligne) {
+    let lastSymbolPresent = "";
+    let text_ligne_array = [];
+    styleBySymbolArray.forEach(styleTag => {
+        text_ligne_array = text_ligne.split(styleTag);
+        if (text_ligne_array.length > 1) {
+            lastSymbolPresent = styleTag;
+        }
+    });
+    return lastSymbolPresent;
+}
 function isImpair(numberToTest) {
     return numberToTest % 2 === 1;
 }
