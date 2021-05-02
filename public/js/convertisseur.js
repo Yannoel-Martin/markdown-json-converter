@@ -36,9 +36,13 @@ function chechNewModeMarkdown(ligneArray, mode_markdown) {
     if (listTagsMarkdown[ligneArray[0]] && mode_markdown !== "code") {
         mode_markdown = listTagsMarkdown[ligneArray[0]];
     } else {
+        // exception mode_markdown
         let numberOl = parseInt(ligneArray[0].split('.')[0]);
         if (!isNaN(numberOl)) {
             mode_markdown = "ol";
+        }
+        if (ligneArray[0].substr(0, 1) === ">") {
+            mode_markdown = "quote";
         }
     }
     return mode_markdown;
@@ -54,8 +58,20 @@ function traitmentNewContentForTextLine(ligneArray, ligneMarkdown, mode_markdown
             if (text_ligne_boucle !== "") {
                 text_ligne_boucle += " ";
             }
-            if (elem_ligne !== ligneArray[0] || text_ligne_ctr !== 0) {
-                text_ligne_boucle += elem_ligne;
+            if (mode_markdown === 'quote') {
+                if (elem_ligne !== ligneArray[0]) {
+                    text_ligne_boucle += elem_ligne;
+                } else {
+                    if (elem_ligne.substr(0, 1) !== ">") {
+                        text_ligne_boucle += elem_ligne;
+                    } else {
+                        text_ligne_boucle += "  " + elem_ligne.substr(1, (elem_ligne.length - 1));
+                    }
+                }
+            } else {
+                if (elem_ligne !== ligneArray[0] || text_ligne_ctr !== 0) {
+                    text_ligne_boucle += elem_ligne;
+                }
             }
             text_ligne_ctr++;
         })
@@ -119,6 +135,23 @@ function traitmentTextLineBeforePush(mode_markdown, text_ligne) {
                 }
             });
             text_ligne = '[' + retourLigne + text_ligne + retourLigne + ']';
+            break;
+        case "quote":
+            let text_ligne_ctr = 1;
+            text_ligne_temp = text_ligne.split(retourLigne_html);
+            text_ligne = '';
+            text_ligne_temp.forEach(ligne_temp => {
+                if (text_ligne !== "") {
+                    text_ligne += retourLigne_html;
+                }
+                if (text_ligne_ctr !== text_ligne_temp.length) {
+                    if (ligne_temp.substr(0, 2) !== "  ") {
+                        text_ligne += "  ";
+                    }
+                }
+                text_ligne += ligne_temp;
+                text_ligne_ctr++;
+            });
             break;
         default:
             text_ligne = '"' + text_ligne + '"';
