@@ -162,7 +162,24 @@ function traitmentTextLineBeforePush(mode_markdown, text_ligne) {
             text_ligne = '"' + text_ligne + '"';
             break;
     }
-    return text_ligne;
+    return traitmentEncapsulationText(text_ligne);
+}
+function traitmentEncapsulationText(text_ligne) {
+    let isTextUpdate = false;
+    let text_ligne_temp = text_ligne;
+    let lastSymbolPresent = "";
+    arrayStyleBySymbol.forEach(styleBySymbolArray => {
+        lastSymbolPresent = foundLastSymbolPresent(styleBySymbolArray, text_ligne_temp);
+        if (lastSymbolPresent !== "") {
+            isTextUpdate = true;
+            text_ligne_temp = replaceTextFomSymbol(text_ligne_temp, lastSymbolPresent);
+        }
+    });
+    if (!isTextUpdate) {
+        return text_ligne;
+    } else {
+        return text_ligne_temp;
+    }
 }
 function foundLastSymbolPresent(styleBySymbolArray, text_ligne) {
     let lastSymbolPresent = "";
