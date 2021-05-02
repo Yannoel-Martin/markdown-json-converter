@@ -175,6 +175,22 @@ function foundLastSymbolPresent(styleBySymbolArray, text_ligne) {
     });
     return lastSymbolPresent;
 }
+function replaceTextFomSymbol(text_ligne, styleTag) {
+    let returnText = "";
+    let text_ligne_array = text_ligne.split(styleTag);
+
+    let tagOpenning = "";
+    let tagClosure = "";
+    if (listStyleMarkdown[styleTag] !== "ib") {
+        tagOpenning = "<" + listStyleMarkdown[styleTag] + ">";
+        tagClosure = "</" + listStyleMarkdown[styleTag] + ">";
+    } else {
+        tagOpenning = "<b><i>";
+        tagClosure = "</i></b>";
+    }
+
+    return returnText;
+}
 function isImpair(numberToTest) {
     return numberToTest % 2 === 1;
 }
