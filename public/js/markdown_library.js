@@ -5,7 +5,7 @@ const arrayContentTags = [
     "h3",
     "h4",
     "h5",
-    "h6"
+    "h6",
 ];
 const listTagsMarkdown = {
     "#": "h1",
@@ -23,9 +23,28 @@ const listTagsMarkdown = {
     "[X]": "checklist",
     ">": "quote",
 };
-const listInnerContentMarkdown = {
-    "`": "part-code",
-    "``": "part-code",
+const arrayStyleBySymbol = [
+    [
+        "`",
+        "``",
+    ],
+    [
+        "*",
+        "**",
+        "***",
+    ],
+    [
+        "_",
+        "__",
+        "___",
+    ],
+    [
+        "~~",
+    ],
+];
+const listStyleMarkdown = {
+    "`": "code",
+    "``": "code",
     "*": "i",
     "_": "i",
     "**": "b",
