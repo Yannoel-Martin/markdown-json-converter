@@ -91,7 +91,7 @@ function imporEncapsulation() {
     returnText += retourLigne;
     returnText += 'You\'re just a ___fake___ text, a bold and italic text from ___' + retourLigne;
     returnText += retourLigne;
-    returnText += '## Crossed out :' + retourLigne;
+    returnText += '## Strikethrough :' + retourLigne;
     returnText += retourLigne;
     returnText += 'I am a ~~censured~~ text, just close your eyes' + retourLigne;
     returnText += retourLigne;

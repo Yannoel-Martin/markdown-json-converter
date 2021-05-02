@@ -32,7 +32,7 @@ const listInnerContentMarkdown = {
     "__": "b",
     "***": "ib",
     "___": "ib",
-    "~~": "-",
+    "~~": "del",
 }
 
 function getMarkdownDefault() {
