@@ -164,6 +164,12 @@ function traitmentTextLineBeforePush(mode_markdown, text_ligne) {
     }
     return text_ligne;
 }
+function isImpair(numberToTest) {
+    if (numberToTest % 2 === 1) {
+        return true;
+    }
+    return false;
+}
 
 /* Functions for Json Return */
 function displayReturnJson(jsonArray) {
