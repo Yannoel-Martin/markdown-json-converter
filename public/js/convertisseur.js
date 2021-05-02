@@ -189,6 +189,36 @@ function replaceTextFomSymbol(text_ligne, styleTag) {
         tagClosure = "</i></b>";
     }
 
+    let ctr_text_ligne_array = 1;
+    text_ligne_array.forEach(text_ligne_elem => {
+        if (isImpair(text_ligne_array.length)) {
+            if (isImpair(ctr_text_ligne_array)) {
+                if (text_ligne_array.length !== ctr_text_ligne_array) {
+                    returnText += text_ligne_elem + tagOpenning;
+                } else {
+                    returnText += text_ligne_elem;
+                }
+            } else {
+                returnText += text_ligne_elem + tagClosure;
+            }
+        } else {
+            if (isImpair(ctr_text_ligne_array)) {
+                if ((text_ligne_array.length - 1) !== ctr_text_ligne_array) {
+                    returnText += text_ligne_elem + tagOpenning;
+                } else {
+                    returnText += text_ligne_elem + styleTag;
+                }
+            } else {
+                if (text_ligne_array.length !== ctr_text_ligne_array) {
+                    returnText += text_ligne_elem + tagClosure;
+                } else {
+                    returnText += text_ligne_elem;
+                }
+            }
+        }
+        ctr_text_ligne_array++;
+    });
+
     return returnText;
 }
 function isImpair(numberToTest) {
