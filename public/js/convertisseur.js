@@ -48,36 +48,35 @@ function chechNewModeMarkdown(ligneArray, mode_markdown) {
     return mode_markdown;
 }
 function traitmentNewContentForTextLine(ligneArray, ligneMarkdown, mode_markdown, text_ligne) {
+    let text_ligne_boucle = "";
     if (text_ligne !== "") {
         text_ligne += retourLigne_html;
     }
-    if (mode_markdown !== "code") {
-        let text_ligne_boucle = "";
-        let text_ligne_ctr = 0;
-        ligneArray.forEach(elem_ligne => {
-            if (text_ligne_boucle !== "") {
-                text_ligne_boucle += " ";
-            }
-            if (mode_markdown === 'quote') {
-                if (elem_ligne !== ligneArray[0]) {
-                    text_ligne_boucle += elem_ligne;
-                } else {
-                    if (elem_ligne.substr(0, 1) !== ">") {
-                        text_ligne_boucle += elem_ligne;
-                    } else {
-                        text_ligne_boucle += "  " + elem_ligne.substr(1, (elem_ligne.length - 1));
-                    }
-                }
+    switch (mode_markdown) {
+        case "p":
+        case "code":
+            text_ligne += ligneMarkdown;
+            break;
+        case "quote":
+            if (ligneMarkdown.substr(0, 1) !== ">") {
+                text_ligne += ligneMarkdown;
             } else {
+                text_ligne += "  " + ligneMarkdown.substr(1, (ligneMarkdown.length - 1));
+            }
+            break;
+        default:
+            let text_ligne_ctr = 0;
+            ligneArray.forEach(elem_ligne => {
+                if (text_ligne_boucle !== "") {
+                    text_ligne_boucle += " ";
+                }
                 if (elem_ligne !== ligneArray[0] || text_ligne_ctr !== 0) {
                     text_ligne_boucle += elem_ligne;
                 }
-            }
-            text_ligne_ctr++;
-        })
-        text_ligne += text_ligne_boucle;
-    } else {
-        text_ligne += ligneMarkdown;
+                text_ligne_ctr++;
+            });
+            text_ligne += text_ligne_boucle;
+            break;
     }
     return text_ligne;
 }
