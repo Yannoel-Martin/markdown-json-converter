@@ -57,6 +57,18 @@ function importListCheck() {
     returnText += '[ ] I wait for my turn :|' + retourLigne;
     return returnText;
 }
+function importQuoteContent() {
+    let returnText = "";
+    returnText += '# Demo : Quotation' + retourLigne;
+    returnText += retourLigne;
+    returnText += '>Somebody say this.' + retourLigne;
+    returnText += '>but also this' + retourLigne;
+    returnText += retourLigne;
+    returnText += '>Somebody else told that.' + retourLigne;
+    returnText += 'and that of course without ">"' + retourLigne;
+    returnText += 'But hell no this sentence !' + retourLigne;
+    return returnText;
+}
 function imporEncapsulation() {
     let returnText = "";
     returnText += '# Demo : Encapsulation content' + retourLigne;
@@ -84,18 +96,6 @@ function imporEncapsulation() {
     returnText += 'I am a ~~censured~~ text, just close your eyes' + retourLigne;
     returnText += retourLigne;
     returnText += 'Shhhhhh, everthing will ~~end~~ be **fine** now' + retourLigne;
-    return returnText;
-}
-function importQuoteContent() {
-    let returnText = "";
-    returnText += '# Demo : Quotation' + retourLigne;
-    returnText += retourLigne;
-    returnText += '>Somebody say this.' + retourLigne;
-    returnText += '>but also this' + retourLigne;
-    returnText += retourLigne;
-    returnText += '>Somebody else told that.' + retourLigne;
-    returnText += 'and that of course without ">"' + retourLigne;
-    returnText += 'But hell no this sentence !' + retourLigne;
     return returnText;
 }
 function importCodeContent() {
@@ -151,11 +151,11 @@ function importDefaultMarkdown(type_import) {
         case "list-check":
             markdownText += importListCheck();
             break;
-        case "encapsulation":
-            markdownText += imporEncapsulation();
-            break;
         case "quotation":
             markdownText += importQuoteContent();
+            break;
+        case "encapsulation":
+            markdownText += imporEncapsulation();
             break;
         case "code-content":
             markdownText += importCodeContent();
